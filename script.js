@@ -93,6 +93,16 @@ function handleStatusChange(jobId, newStatus) {
     }
 }
 
+function handleDelete(jobId) {
+    const jobIndex = jobs.findIndex(j => j.id === jobId);
+    if (jobIndex !== -1) {
+        jobs.splice(jobIndex, 1);
+        renderJobs(currentFilter);
+        updateDashboard();
+        updateTabCounts();
+    }
+}
+
 function renderJobs(filter = 'all') {
     const jobContainer = document.getElementById('job-container');
     
@@ -122,6 +132,7 @@ function renderJobs(filter = 'all') {
         const deleteBtn = document.createElement('button');
         deleteBtn.className = 'delete-btn';
         deleteBtn.textContent = '🗑️';
+        deleteBtn.addEventListener('click', () => handleDelete(job.id));
         
         const companyName = document.createElement('h3');
         companyName.className = 'company-name';
