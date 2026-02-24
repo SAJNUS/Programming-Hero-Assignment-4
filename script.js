@@ -116,7 +116,15 @@ function renderJobs(filter = 'all') {
     }
     
     const jobCountElement = document.getElementById('job-count');
-    jobCountElement.textContent = `${filteredJobs.length} jobs`;
+    if (filter === 'all') {
+        jobCountElement.textContent = `${filteredJobs.length} Jobs`;
+    } else {
+        if (filteredJobs.length === 0) {
+            jobCountElement.textContent = '0 Jobs';
+        } else {
+            jobCountElement.textContent = `${filteredJobs.length} of ${jobs.length} Jobs`;
+        }
+    }
     
     if (filteredJobs.length === 0) {
         showEmptyState();
@@ -126,6 +134,11 @@ function renderJobs(filter = 'all') {
     filteredJobs.forEach(job => {
         const jobCard = document.createElement('div');
         jobCard.className = 'job-card';
+        if (job.status === 'interview') {
+            jobCard.classList.add('job-card-interview');
+        } else if (job.status === 'rejected') {
+            jobCard.classList.add('job-card-rejected');
+        }
         jobCard.setAttribute('data-id', job.id);
         jobCard.setAttribute('data-status', job.status);
         
@@ -148,7 +161,16 @@ function renderJobs(filter = 'all') {
         
         const statusBadge = document.createElement('span');
         statusBadge.className = 'status-badge';
-        statusBadge.textContent = 'NOT APPLIED';
+        
+        if (job.status === 'interview') {
+            statusBadge.classList.add('status-interview');
+            statusBadge.textContent = 'INTERVIEW';
+        } else if (job.status === 'rejected') {
+            statusBadge.classList.add('status-rejected');
+            statusBadge.textContent = 'REJECTED';
+        } else {
+            statusBadge.textContent = 'NOT APPLIED';
+        }
         
         const jobDescription = document.createElement('p');
         jobDescription.className = 'job-description';
@@ -227,15 +249,9 @@ function updateTabCounts() {
     
     const tabs = document.querySelectorAll('.tab-btn');
     
-    const currentTexts = [
-        tabs[0].textContent.includes('(') ? tabs[0].textContent.split(' ')[0] : tabs[0].textContent,
-        tabs[1].textContent.includes('(') ? tabs[1].textContent.split(' ')[0] : tabs[1].textContent,
-        tabs[2].textContent.includes('(') ? tabs[2].textContent.split(' ')[0] : tabs[2].textContent
-    ];
-    
-    tabs[0].textContent = `All (${allCount})`;
-    tabs[1].textContent = `Interview (${interviewCount})`;
-    tabs[2].textContent = `Rejected (${rejectedCount})`;
+    tabs[0].textContent = 'All';
+    tabs[1].textContent = 'Interview';
+    tabs[2].textContent = 'Rejected';
     
     if (currentFilter === 'all') {
         tabs[0].classList.add('active');
