@@ -196,7 +196,6 @@ header h1 {
 }
 
 .btn {
-    flex: 1;
     padding: 10px 16px;
     border: 1px solid;
     border-radius: 6px;
