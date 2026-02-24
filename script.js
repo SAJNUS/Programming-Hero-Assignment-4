@@ -200,9 +200,10 @@ function showEmptyState() {
     const emptyState = document.createElement('div');
     emptyState.className = 'empty-state';
     
-    const icon = document.createElement('div');
+    const icon = document.createElement('img');
     icon.className = 'empty-icon';
-    icon.innerHTML = '📄';
+    icon.src = 'images/jobs.png';
+    icon.alt = 'No jobs';
     
     const title = document.createElement('h3');
     title.className = 'empty-title';

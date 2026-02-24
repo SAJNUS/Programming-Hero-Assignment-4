@@ -1,4 +1,4 @@
-# Job Application Tracker - JavaScript Questions
+# Job Application Tracker
 
 ## 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
 
