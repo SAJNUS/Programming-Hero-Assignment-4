@@ -227,6 +227,34 @@ header h1 {
     color: white;
 }
 
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    opacity: 0.6;
+}
+
+.empty-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #003d82;
+    margin-bottom: 10px;
+}
+
+.empty-subtitle {
+    font-size: 0.875rem;
+    color: #6e6e73;
+}
+
 @media (max-width: 1024px) {
     .jobs-grid {
         grid-template-columns: repeat(2, 1fr);

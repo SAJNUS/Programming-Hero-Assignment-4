@@ -1,3 +1,5 @@
+let currentFilter = 'all';
+
 const jobs = [
     {
         id: 1,
@@ -85,16 +87,33 @@ function handleStatusChange(jobId, newStatus) {
     const job = jobs.find(j => j.id === jobId);
     if (job) {
         job.status = newStatus;
+        renderJobs(currentFilter);
         updateDashboard();
+        updateTabCounts();
     }
 }
 
-function renderJobs() {
+function renderJobs(filter = 'all') {
     const jobContainer = document.getElementById('job-container');
     
     jobContainer.innerHTML = '';
     
-    jobs.forEach(job => {
+    let filteredJobs = jobs;
+    if (filter === 'interview') {
+        filteredJobs = jobs.filter(job => job.status === 'interview');
+    } else if (filter === 'rejected') {
+        filteredJobs = jobs.filter(job => job.status === 'rejected');
+    }
+    
+    const jobCountElement = document.getElementById('job-count');
+    jobCountElement.textContent = `${filteredJobs.length} jobs`;
+    
+    if (filteredJobs.length === 0) {
+        showEmptyState();
+        return;
+    }
+    
+    filteredJobs.forEach(job => {
         const jobCard = document.createElement('div');
         jobCard.className = 'job-card';
         jobCard.setAttribute('data-id', job.id);
@@ -160,11 +179,84 @@ function updateDashboard() {
     const rejectedCount = jobs.filter(job => job.status === 'rejected').length;
     
     document.getElementById('total-count').textContent = totalCount;
-    document.getElementById('job-count').textContent = `${totalCount} jobs`;
     document.querySelector('.stat-value.interview').textContent = interviewCount;
     document.querySelector('.stat-value.rejected').textContent = rejectedCount;
 }
 
+function showEmptyState() {
+    const jobContainer = document.getElementById('job-container');
+    
+    const emptyState = document.createElement('div');
+    emptyState.className = 'empty-state';
+    
+    const icon = document.createElement('div');
+    icon.className = 'empty-icon';
+    icon.innerHTML = '📄';
+    
+    const title = document.createElement('h3');
+    title.className = 'empty-title';
+    title.textContent = 'No jobs available';
+    
+    const subtitle = document.createElement('p');
+    subtitle.className = 'empty-subtitle';
+    subtitle.textContent = 'Check back soon for new job opportunities';
+    
+    emptyState.appendChild(icon);
+    emptyState.appendChild(title);
+    emptyState.appendChild(subtitle);
+    
+    jobContainer.appendChild(emptyState);
+}
+
+function updateTabCounts() {
+    const allCount = jobs.length;
+    const interviewCount = jobs.filter(job => job.status === 'interview').length;
+    const rejectedCount = jobs.filter(job => job.status === 'rejected').length;
+    
+    const tabs = document.querySelectorAll('.tab-btn');
+    
+    const currentTexts = [
+        tabs[0].textContent.includes('(') ? tabs[0].textContent.split(' ')[0] : tabs[0].textContent,
+        tabs[1].textContent.includes('(') ? tabs[1].textContent.split(' ')[0] : tabs[1].textContent,
+        tabs[2].textContent.includes('(') ? tabs[2].textContent.split(' ')[0] : tabs[2].textContent
+    ];
+    
+    tabs[0].textContent = `All (${allCount})`;
+    tabs[1].textContent = `Interview (${interviewCount})`;
+    tabs[2].textContent = `Rejected (${rejectedCount})`;
+    
+    if (currentFilter === 'all') {
+        tabs[0].classList.add('active');
+    } else if (currentFilter === 'interview') {
+        tabs[1].classList.add('active');
+    } else if (currentFilter === 'rejected') {
+        tabs[2].classList.add('active');
+    }
+}
+
+function handleTabClick(tabName) {
+    currentFilter = tabName;
+    
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    if (tabName === 'all') {
+        tabs[0].classList.add('active');
+    } else if (tabName === 'interview') {
+        tabs[1].classList.add('active');
+    } else if (tabName === 'rejected') {
+        tabs[2].classList.add('active');
+    }
+    
+    renderJobs(tabName);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     renderJobs();
+    updateTabCounts();
+    
+    const tabs = document.querySelectorAll('.tab-btn');
+    tabs[0].addEventListener('click', () => handleTabClick('all'));
+    tabs[1].addEventListener('click', () => handleTabClick('interview'));
+    tabs[2].addEventListener('click', () => handleTabClick('rejected'));
 });
