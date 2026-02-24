@@ -8,16 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header>
             <h1>Job Application Tracker</h1>
         </header>
 
-        <!-- Dashboard Section -->
         <section class="dashboard">
             <div class="stat-card">
                 <p class="stat-label">Total</p>
-                <p class="stat-value total">8</p>
+                <p class="stat-value total" id="total-count">0</p>
             </div>
             <div class="stat-card">
                 <p class="stat-label">Interview</p>
@@ -29,133 +27,19 @@
             </div>
         </section>
 
-        <!-- Available Jobs Section -->
         <section class="jobs-section">
             <div class="jobs-header">
                 <h2>Available Jobs</h2>
-                <p class="job-count">8 jobs</p>
+                <p class="job-count" id="job-count">0 jobs</p>
             </div>
 
-            <!-- Filter Tabs -->
             <div class="filter-tabs">
                 <button class="tab-btn active">All</button>
                 <button class="tab-btn">Interview</button>
                 <button class="tab-btn">Rejected</button>
             </div>
 
-            <!-- Job Cards -->
-            <div class="jobs-grid">
-                <!-- Job Card 1 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">Mobile First Corp</h3>
-                    <p class="job-title">React Native Developer</p>
-                    <p class="job-details">Remote • Full-time • $130,000 - $175,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 2 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">WebFlow Agency</h3>
-                    <p class="job-title">Web Designer & Developer</p>
-                    <p class="job-details">Los Angeles, CA • Part-time • $80,000 - $120,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 3 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">TechStart Inc</h3>
-                    <p class="job-title">Full Stack Engineer</p>
-                    <p class="job-details">San Francisco, CA • Full-time • $140,000 - $180,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Join our innovative team to build scalable web applications. Experience with Node.js, React, and cloud platforms required.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 4 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">Data Solutions Co</h3>
-                    <p class="job-title">Frontend Developer</p>
-                    <p class="job-details">Austin, TX • Full-time • $110,000 - $150,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Develop responsive user interfaces for enterprise data visualization tools. Strong JavaScript and CSS skills essential.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 5 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">Creative Studios</h3>
-                    <p class="job-title">UI/UX Designer</p>
-                    <p class="job-details">New York, NY • Full-time • $95,000 - $135,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Design intuitive interfaces for mobile and web applications. Collaborate with development teams to bring designs to life.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 6 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">Cloud Systems Ltd</h3>
-                    <p class="job-title">DevOps Engineer</p>
-                    <p class="job-details">Seattle, WA • Full-time • $125,000 - $165,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Manage cloud infrastructure and CI/CD pipelines. Experience with AWS, Docker, and Kubernetes preferred.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 7 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">Digital Marketing Pro</h3>
-                    <p class="job-title">WordPress Developer</p>
-                    <p class="job-details">Remote • Contract • $70,000 - $100,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Build and maintain WordPress sites for clients. Custom theme development and plugin integration experience needed.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
-
-                <!-- Job Card 8 -->
-                <div class="job-card">
-                    <button class="delete-btn">🗑️</button>
-                    <h3 class="company-name">Game Dev Studio</h3>
-                    <p class="job-title">Unity Developer</p>
-                    <p class="job-details">Boston, MA • Full-time • $100,000 - $140,000</p>
-                    <span class="status-badge">NOT APPLIED</span>
-                    <p class="job-description">Create immersive gaming experiences using Unity. Work on cutting-edge VR and AR projects with a talented team.</p>
-                    <div class="job-actions">
-                        <button class="btn btn-interview">INTERVIEW</button>
-                        <button class="btn btn-rejected">REJECTED</button>
-                    </div>
-                </div>
+            <div class="jobs-grid" id="job-container">
             </div>
         </section>
     </div>
