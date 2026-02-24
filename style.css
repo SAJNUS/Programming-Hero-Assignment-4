@@ -118,7 +118,7 @@ header h1 {
 
 .jobs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 20px;
 }
 
@@ -177,8 +177,8 @@ header h1 {
     font-size: 0.675rem;
     font-weight: 700;
     color: #003d82;
-    background: transparent;
-    padding: 4px 0;
+    background: #e3f2fd;
+    padding: 4px 8px;
     border-radius: 4px;
     margin-bottom: 12px;
 }
@@ -253,12 +253,6 @@ header h1 {
 .empty-subtitle {
     font-size: 0.875rem;
     color: #6e6e73;
-}
-
-@media (max-width: 1024px) {
-    .jobs-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 @media (max-width: 768px) {
