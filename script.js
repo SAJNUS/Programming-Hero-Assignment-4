@@ -81,6 +81,14 @@ const jobs = [
     }
 ];
 
+function handleStatusChange(jobId, newStatus) {
+    const job = jobs.find(j => j.id === jobId);
+    if (job) {
+        job.status = newStatus;
+        updateDashboard();
+    }
+}
+
 function renderJobs() {
     const jobContainer = document.getElementById('job-container');
     
@@ -122,10 +130,12 @@ function renderJobs() {
         const interviewBtn = document.createElement('button');
         interviewBtn.className = 'btn btn-interview';
         interviewBtn.textContent = 'INTERVIEW';
+        interviewBtn.addEventListener('click', () => handleStatusChange(job.id, 'interview'));
         
         const rejectedBtn = document.createElement('button');
         rejectedBtn.className = 'btn btn-rejected';
         rejectedBtn.textContent = 'REJECTED';
+        rejectedBtn.addEventListener('click', () => handleStatusChange(job.id, 'rejected'));
         
         jobActions.appendChild(interviewBtn);
         jobActions.appendChild(rejectedBtn);
